@@ -33,12 +33,9 @@ var mainView = app.views.create('.view-main', {
 
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
-  var username = $$('#my-login-screen [name="username"]').val();
-  var password = $$('#my-login-screen [name="password"]').val();
+  var loginData = app.form.convertToData('#my-login-screen');
+  
 
-  // Close login screen
   app.loginScreen.close('#my-login-screen');
-
-  // Alert username and password
-  app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
+  app.dialog.alert(loginData.username);
 });
