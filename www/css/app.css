@@ -53,3 +53,22 @@
   margin: 0 auto;
   padding: 1em;
 }
+
+.display-none {
+  display: none;
+}
+
+.block.error {
+  background: #fcebbd;
+  color: #af9540;
+  padding: 1em;
+  text-align: center;
+}
+
+.error .message {
+  padding: 1em 0;
+}
+
+.login-message a {
+  display: none;
+}

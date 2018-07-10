@@ -4,7 +4,7 @@ var apiUrl = 'http://konkreta.constrinew.com.br/wp-json/';
 // Framework7 App main instance
 var app  = new Framework7({
   root: '#app', // App root element
-  id: 'io.framework7.testapp', // App bundle ID
+  id: 'br.com.constrinew.konkreta', // App bundle ID
   name: 'Framework7', // App name
   theme: 'auto', // Automatic theme detection
   // App root data
@@ -54,6 +54,7 @@ $$('#my-login-screen .login-button').on('click', function () {
           }*/
         },
         function(data) {
+          console.log(data.response);
           var message = JSON.parse(data.response).message.replace('<strong>ERRO<\/strong>:', '', 'Erro');
           console.log(message);
         }

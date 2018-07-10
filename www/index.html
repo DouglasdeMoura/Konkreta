@@ -180,6 +180,9 @@
         <div class="page">
           <div class="page-content login-screen-content">
             <div class="login-screen-title">Konkreta</div>
+            <div class="login-message block error display-none">
+              <p class="message"></p>
+            </div>
             <div class="list">
               <ul>
                 <li class="item-content item-input">
@@ -210,7 +213,53 @@
               <div class="block-footer no-padding">
                 <div class="row">
                   <div class="col-50">
-                    <a href="#" class="item-link button-small register-button button button-fill">Esqueci a senha</a>
+                    <a href="#" class="item-link button-small button button-fill login-screen-open" data-login-screen="#reset-password">Esqueci a senha</a>
+                  </div>
+                  <div class="col-50">
+                    <a href="#" class="item-link button-small button button-fill">Cadastre-se</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="block-footer">Ao utilizar o Konkreta, você concorda com nossos <a href="#">termos de serviço.</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reset password -->
+    <div class="login-screen" id="reset-password">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Recupere sua senha</div>
+            <div class="login-message block error display-none">
+              <p class="message"></p>
+            </div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label">E-mail</div>
+                    <div class="item-input-wrap">
+                      <input type="email" name="username" id="username" required>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="#" class="item-link login-button button button-fill">Recuperar senha</a>
+                </li>
+              </ul>
+
+              <div class="block-footer no-padding">
+                <div class="row">
+                  <div class="col-50">
+                    <a href="#" class="item-link button-small button button-fill login-screen-open" data-login-screen="#my-login-screen">Entrar</a>
                   </div>
                   <div class="col-50">
                     <a href="#" class="item-link button-small recover-button button button-fill">Cadastre-se</a>
@@ -224,9 +273,10 @@
         </div>
       </div>
     </div>
+
   </div>
   <!-- Cordova -->
-  <script src="cordova.js"></script>
+  <!--<script src="cordova.js"></script>-->
 
   <!-- Framework7 library -->
   <script src="framework7/js/framework7.min.js"></script>
