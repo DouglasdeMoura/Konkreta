@@ -1,6 +1,6 @@
 // Dom7
 var $$ = Dom7;
-
+var apiUrl = 'http://konkreta.constrinew.com.br/wp-json/';
 // Framework7 App main instance
 var app  = new Framework7({
   root: '#app', // App root element
@@ -32,10 +32,37 @@ var mainView = app.views.create('.view-main', {
 });
 
 // Login Screen Demo
-$$('#my-login-screen .login-button').on('click', function () {
-  var loginData = app.form.convertToData('#my-login-screen');
-  
 
-  app.loginScreen.close('#my-login-screen');
-  app.dialog.alert(loginData.username);
+//;
+//var password = $$('#my-login-screen [name="password"]');
+
+$$('#my-login-screen .login-button').on('click', function () {
+  app.input.validateInputs('#my-login-screen');
+
+  app.request.postJSON(
+    apiUrl + 'jwt-auth/v1/token',
+    app.form.convertToData('#my-login-screen'),
+        function (app, data) {
+          //Sucesso
+          console.log(data);
+          /*
+          app.data = {
+            token: localStorage.setItem('token', data.token),
+            user_display_name: localStorage.setItem('user_display_name', data.user_display_name),
+            user_email: localStorage.setItem('user_email', data.user_email),
+            user_nicename: localStorage.setItem('user_nicename', data.user_nicename)
+          }*/
+        },
+        function(data) {
+          var message = JSON.parse(data.response).message.replace('<strong>ERRO<\/strong>:', '', 'Erro');
+          console.log(message);
+        }
+      );
+
+  // Change error messages
+//var username = $$('#my-login-screen [name="username"]').val();
+  //var password = $$('#my-login-screen [name="password"]').val();*/
+
+  //app.loginScreen.close('#my-login-screen');
+  //app.dialog.alert(loginData.username);
 });
