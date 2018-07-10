@@ -1,43 +1,44 @@
-// Initialize app
-var app = new Framework7();
-
-
-// If we need to use custom DOM library, let's save it to $$ variable:
+// Dom7
 var $$ = Dom7;
 
-// Add view
-var mainView = app.addView('.view-main', {
-    // Because we want to use dynamic navbar, we need to enable it for this view:
-    dynamicNavbar: true
+// Framework7 App main instance
+var app  = new Framework7({
+  root: '#app', // App root element
+  id: 'io.framework7.testapp', // App bundle ID
+  name: 'Framework7', // App name
+  theme: 'auto', // Automatic theme detection
+  // App root data
+  data: function () {
+    return {
+      user: {
+        firstName: 'John',
+        lastName: 'Doe',
+      },
+    };
+  },
+  // App root methods
+  methods: {
+    helloWorld: function () {
+      app.dialog.alert('Hello World!');
+    },
+  },
+  // App routes
+  routes: routes,
 });
 
-// Handle Cordova Device Ready Event
-$$(document).on('deviceready', function() {
-    console.log("Device is ready!");
+// Init/Create main view
+var mainView = app.views.create('.view-main', {
+  url: '/'
 });
 
+// Login Screen Demo
+$$('#my-login-screen .login-button').on('click', function () {
+  var username = $$('#my-login-screen [name="username"]').val();
+  var password = $$('#my-login-screen [name="password"]').val();
 
-// Now we need to run the code that will be executed only for About page.
+  // Close login screen
+  app.loginScreen.close('#my-login-screen');
 
-// Option 1. Using page callback for page (for "about" page in this case) (recommended way):
-app.onPageInit('about', function (page) {
-    // Do something here for "about" page
-
-})
-
-// Option 2. Using one 'pageInit' event handler for all pages:
-$$(document).on('pageInit', function (e) {
-    // Get page data from event data
-    var page = e.detail.page;
-
-    if (page.name === 'about') {
-        // Following code will be executed for page with data-page attribute equal to "about"
-        app.alert('Here comes About page');
-    }
-})
-
-// Option 2. Using live 'pageInit' event handlers for each page
-$$(document).on('pageInit', '.page[data-page="about"]', function (e) {
-    // Following code will be executed for page with data-page attribute equal to "about"
-    app.alert('Here comes About page');
-})
+  // Alert username and password
+  app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
+});
